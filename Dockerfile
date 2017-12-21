@@ -18,9 +18,9 @@ ENV APPLICATION_SECRET=dkjf{2QivJKM4d
 
 ENV JAVA_HOME=/usr/java/default/ \
     KM_VERSION=1.3.3.15 \
-    KM_REVISION=aa640ad130315e546fa1543b2ac39ddf1f130f4e \
-    KM_BASEDIR=/kafka-manager-${KM_VERSION} \
-    KM_CONFIGFILE="${KM_BASEDIR}/conf/application.conf"
+    KM_REVISION=aa640ad130315e546fa1543b2ac39ddf1f130f4e
+ENV KM_BASEDIR=/kafka-manager-${KM_VERSION}
+ENV KM_CONFIGFILE="${KM_BASEDIR}/conf/application.conf"
 
 # activate basic auth by default
 ENV KAFKA_MANAGER_AUTH_ENABLED="true"  \
