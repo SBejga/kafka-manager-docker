@@ -31,6 +31,8 @@ ADD start-kafka-manager.sh /kafka-manager-${KM_VERSION}/start-kafka-manager.sh
 ADD curlCreateCluster.sh /opt/curlCreateCluster.sh
 ADD wait-for-it/wait-for-it.sh /opt/wait-for-it.sh
 
+# ENV SBT_OPTS="-Xmx1536M -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=2G -Xss2M  -Duser.timezone=GMT"
+
 RUN yum install -y java-1.8.0-openjdk-devel git wget unzip which && \
     mkdir -p /tmp && \
     cd /tmp && \
@@ -38,8 +40,7 @@ RUN yum install -y java-1.8.0-openjdk-devel git wget unzip which && \
     cd /tmp/kafka-manager && \
     git checkout ${KM_REVISION} && \ 
     echo 'scalacOptions ++= Seq("-Xmax-classfile-name", "200")' >> build.sbt && \
-    ./sbt clean dist && \
-    cd /tmp && \
+    ./sbt -mem2000 clean dist && \
     unzip  -d / ./target/universal/kafka-manager-${KM_VERSION}.zip && \
     rm -fr /tmp/* /root/.sbt /root/.ivy2 && \
     chmod +x ${KM_BASEDIR}/start-kafka-manager.sh && \
