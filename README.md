@@ -9,3 +9,7 @@
 - updated to kafka-manager version 1.3.3.15
 - added wait-for-it.sh
 - curl script to create the cluster in kafka-manager
+
+## Dockerhub
+
+https://hub.docker.com/r/sbejga/kafka-manager-docker/
